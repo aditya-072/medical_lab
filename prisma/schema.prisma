@@ -1,0 +1,66 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+// model Note {
+//   id        String   @id @default(cuid())
+//   title     String
+//   content   String?
+//   color     String
+//   somenew   String  @default("Hello")
+//   createdAt DateTime @default(now()) @map("created_at")
+//   updatedAt DateTime @updatedAt @map("updated_at")
+// }
+
+// User
+model User {
+    id        String   @id @default(cuid())
+    email     String
+    password  String
+    level     Int      @default(3)
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+// Patient Model
+model Patient {
+    id       Int     @id @default(autoincrement())
+    name     String
+    age      Int
+    gender   String
+    echo_    Boolean @default(false)
+    ecg_     Boolean @default(false)
+    echoJson Json?
+    // echo      Echo?
+    // ecg    ECG?
+
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+// Echo Model
+// model Echo {
+//     id        Int      @id @default(autoincrement())
+//     patient   Patient? @relation(fields: [patientId], references: [id])
+//     patientId Int?     @unique
+//     createdAt DateTime @default(now()) @map("created_at")
+//     updatedAt DateTime @updatedAt @map("updated_at")
+
+//     reportData Json
+// }
+
+// ECG model
+// model ECG {
+//     id        Int      @id @default(autoincrement())
+//     name      String
+//     // patient   Patient? @relation(fields: [patientId], references: [id])
+//     // patientId Int?     @unique
+//     createdAt DateTime @default(now()) @map("created_at")
+//     updatedAt DateTime @updatedAt @map("updated_at")
+//     jsonField Json?
+// }
